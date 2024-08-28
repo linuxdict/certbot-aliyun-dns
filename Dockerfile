@@ -1,16 +1,12 @@
-FROM certbot/certbot:v2.6.0
+FROM certbot/certbot:v2.11.0
 
-LABEL maintainer="jason.wang@aiyax.com"
+LABEL maintainer="edy@linuxdict.com"
 
-COPY aliyun-cli-linux-3.0.179-amd64.tgz /tmp/aliyun-cli-linux.tgz
-
-RUN tar xzvf /tmp/aliyun-cli-linux.tgz -C /tmp \
-    && cp /tmp/aliyun /usr/local/bin \
-    && rm /tmp/aliyun-cli-linux.tgz
+RUN wget -O /tmp/aliyun-cli-linux-latest-amd64.tgz https://aliyuncli.alicdn.com/aliyun-cli-linux-latest-amd64.tgz \
+    && tar xf /tmp/aliyun-cli-linux-latest-amd64.tgz -C /usr/local/bin \
+    && chmod +x /usr/local/bin/aliyun \
+    && rm /tmp/aliyun-cli-linux-latest-amd64.tgz
 
 WORKDIR /app
 
-COPY aliyun-dns.sh /usr/local/bin/aliyun-dns.sh
-
-RUN chmod +x /usr/local/bin/aliyun-dns.sh \
-    && ln -s /usr/local/bin/aliyun-dns.sh /usr/local/bin/aliyun-dns
+COPY aliyun-dns /usr/local/bin/aliyun-dns
