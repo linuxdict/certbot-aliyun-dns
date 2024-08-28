@@ -7,6 +7,7 @@
 创建证书只需执行如下命令，当然，该命令需要服务器已安装Docker，创建或确认对应的/etc/letsencrypt和/var/lib/letsencrypt目录已存在。另外，需要替换下命令中的三个变量：
 - ALIYUN_CLI_ACCESS_KEY_ID，如何获取参考[创建并授权ACCESS_KEY](README.md#创建并授权ACCESS_KEY)
 - ALIYUN_CLI_ACCESS_KEY_SECRET，同上
+- ALIYUN_REGION, 阿里云的Region
 - CONTACT_EMAIL，联系邮箱，会收到证书生成以及到期预警等邮件
 - CERT_DOMAIN，需要获取证书的域名，比如`aiyax.com`或者`*.aiyax.com`
 
@@ -14,6 +15,7 @@
 docker run -it --rm --name certbot-dns-aliyun \
             -v "/etc/letsencrypt:/etc/letsencrypt" \
             -v "/var/lib/letsencrypt:/var/lib/letsencrypt" \
+	    -e ALIYUN_REGION=<ALIYUN_REGION> \
 	    -e ALIYUN_CLI_ACCESS_KEY_ID=<ALIYUN_CLI_ACCESS_KEY_ID> \
 	    -e ALIYUN_CLI_ACCESS_KEY_SECRET=<ALIYUN_CLI_ACCESS_KEY_SECRET> \
             aiyax/certbot-dns-aliyun certonly \
