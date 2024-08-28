@@ -18,7 +18,7 @@ docker run -it --rm --name certbot-dns-aliyun \
 	    -e ALIYUN_REGION=<ALIYUN_REGION> \
 	    -e ALIYUN_CLI_ACCESS_KEY_ID=<ALIYUN_CLI_ACCESS_KEY_ID> \
 	    -e ALIYUN_CLI_ACCESS_KEY_SECRET=<ALIYUN_CLI_ACCESS_KEY_SECRET> \
-            aiyax/certbot-dns-aliyun certonly \
+            liuedy/certbot-aliyun-dns:latest certonly \
               -d <CERT_DOMAIN> \
               --email <CONTACT_EMAIL> \
               --manual \
@@ -40,7 +40,7 @@ docker run -it --rm --name certbot-dns-aliyun \
     -v "/var/lib/letsencrypt:/var/lib/letsencrypt" \
     -e ALIYUN_CLI_ACCESS_KEY_ID=<ALIYUN_CLI_ACCESS_KEY_ID> \
     -e ALIYUN_CLI_ACCESS_KEY_SECRET=<ALIYUN_CLI_ACCESS_KEY_SECRET> \
-    aiyax/certbot-dns-aliyun renew \
+    liuedy/certbot-aliyun-dns:latest renew \
     --manual \
     --preferred-challenges dns \
     --manual-auth-hook 'aliyun-dns' \
